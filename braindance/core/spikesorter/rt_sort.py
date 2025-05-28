@@ -326,7 +326,7 @@ def detect_sequences(
 
         # Actually detect sequences now
                 
-        # Form prelim prop seqs
+        # Form prelim prop seqs/infere
         if debug and (inter_path / "all_clusters.pickle").exists():
             if verbose:
                 print("Skipping detecting preliminary propagation sequences because file all_clusters.pickle already exists and debug=True")
@@ -381,7 +381,7 @@ def detect_sequences(
             pickle_dump(inter_merged_clusters, inter_path / "inter_merged_clusters.pickle")
         
         # Create RTSort object
-        rt_sort = RTSort(inter_merged_clusters, detection_model, params)
+        rt_sort = RTSort(inter_merged_clusters, detection_model, params, device=device)
         
         if return_spikes:  # Reassign spikes
             if verbose:
